@@ -4,15 +4,17 @@ import 'react-native-gesture-handler';
 // import NavigationStack from './components/Navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './components/Home';
+import ChooseProfile from './components/Auth/ChooseProfile';
+import Login from './components/Auth/Login';
 
 const Stack = createStackNavigator();
 
 export default function App() {
     return (
-        <NavigationContainer styles={styles}>
+        <NavigationContainer style={styles}>
             <Stack.Navigator>
-                <Stack.Screen name="Home" component={Home}></Stack.Screen>
+                <Stack.Screen name="ChooseProfile" component={ChooseProfile} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
+                <Stack.Screen name="Login" component={Login} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     )
