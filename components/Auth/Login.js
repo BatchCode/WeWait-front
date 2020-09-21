@@ -1,17 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { getRandomBrewdog } from '../../services/LoginApi';
 
 // Change default opacity when user press it 
 TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
+
+function GetBeers() {
+    getRandomBrewdog()
+        .then(json => console.log(json))
+        .catch(error => console.log(error))
+}
 
 export default function ChooseProfile({navigation, route}) {
 
     const [email, onChangeEmail] = React.useState('email@domain.com');
     const [password, onChangePwd] = React.useState('Mot de passe');
     
-    let type;
-    if (route.params.isWewaiter) { type = "wewaiter" } else { type = "user"; }
+    // let type;
+    // if (route.params.isWewaiter) { type = "wewaiter" } else { type = "user"; }
 
     return (
         <View style={styles.container}>
@@ -20,6 +27,7 @@ export default function ChooseProfile({navigation, route}) {
             <Text style={styles.txtHint}>Veuillez vous authentifier pour continuer</Text>
             
             {/* <Text>you are: {type}</Text> */}
+            <GetBeers />
 
             <TextInput
                 style={[styles.btn, styles.txtInput]}
