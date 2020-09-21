@@ -7,10 +7,13 @@ const headers = {
 
 export const getRandomBrewdog = () => {
     fetch(`${rootEndpoint}/beers/random`, { headers }).then(
-        ({ status, json }) => {
-            if (status != 200) 
+        (res) => {
+            console.log(res);
+            return res.json();
+            if (res == 200) 
                 throw new Error(`[FATAL] Got response from API: err ${status}`);
-            else return json.json()
+            else return res.json()
         }
+        // This part seems to not break?
     )
 }

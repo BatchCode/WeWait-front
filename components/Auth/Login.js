@@ -8,8 +8,8 @@ TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
 
 function GetBeers() {
     getRandomBrewdog()
-        .then(json => console.log(json))
-        .catch(error => console.log(error))
+        // .then(json => console.log(json))
+        // .catch(error => console.log(error))
 }
 
 export default function ChooseProfile({navigation, route}) {
