@@ -14,13 +14,13 @@ export default function ChooseProfile( {navigation} ) {
             
             <CustomBtn title="Utilisateur" backgroundColor="#21aa38" width="150px" 
                 onPress={() =>
-                    navigation.navigate('Login')
+                    navigation.navigate('Login', {isWewaiter: false})
                 }
             />
             <View style={styles.btnPadding} />
             <CustomBtn title="WeWaiter's" backgroundColor="#2b66cc" width="150px" 
                 onPress={() =>
-                    navigation.navigate('Login')
+                    navigation.navigate('Login', {isWewaiter: true})
                 }
             />
         </View>
