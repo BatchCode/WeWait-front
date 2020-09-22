@@ -7,18 +7,25 @@ import { getRandomBrewdog } from '../../services/LoginApi';
 TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
 
 function GetBeers() {
-    getRandomBrewdog()
-        // .then(json => console.log(json))
-        // .catch(error => console.log(error))
+    getRandomBrewdog();
+    // test.then(res => console.log(res))
+    // console.log(test);
 }
 
 export default function ChooseProfile({navigation, route}) {
 
+    let type;
     const [email, onChangeEmail] = React.useState('email@domain.com');
     const [password, onChangePwd] = React.useState('Mot de passe');
-    
-    // let type;
-    // if (route.params.isWewaiter) { type = "wewaiter" } else { type = "user"; }
+    const [errMsg, setErrMsg] = React.useState();
+
+    const login = () => {
+        let result = getRandomBrewdog();
+        result.then(res => console.log(res))
+        setErrMsg("OLALALA");
+    }
+
+    if (route.params.isWewaiter) { type = "wewaiter" } else { type =  "user"; }
 
     return (
         <View style={styles.container}>
@@ -26,8 +33,8 @@ export default function ChooseProfile({navigation, route}) {
             <Text style={styles.txt}>Bienvenue sur WeWait'</Text>
             <Text style={styles.txtHint}>Veuillez vous authentifier pour continuer</Text>
             
-            {/* <Text>you are: {type}</Text> */}
-            <GetBeers />
+            <Text>you are: {type}</Text>
+            {/* <GetBeers /> */}
 
             <TextInput
                 style={[styles.btn, styles.txtInput]}
@@ -39,14 +46,13 @@ export default function ChooseProfile({navigation, route}) {
                 style={[styles.btn, styles.txtInput]}
                 onChangeText={text => onChangePwd(text)}
                 value={password}
+                secureTextEntry
                 />
             <View style={styles.btnPadding} />
-            <CustomBtn title="Connexion" backgroundColor="#21aa38" width="150px" 
-                onPress={() =>
-                    // Check credentials
-                    navigation.navigate('Home')
-                }
-                />
+            
+            <CustomBtn title="Connexion" backgroundColor="#21aa38" width="150px" onPress={login} />
+            {errMsg ? <Text>{errMsg}</Text> : null}
+            
             <Text>{email}</Text>
             <Text>{password}</Text>
         </View>

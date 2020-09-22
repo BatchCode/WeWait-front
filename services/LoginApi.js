@@ -1,19 +1,17 @@
-const rootEndpoint = "https://api.punkapi.com/v2";
-
-const headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-}
+import configs from '../services/Config'
 
 export const getRandomBrewdog = () => {
-    fetch(`${rootEndpoint}/beers/random`, { headers }).then(
-        (res) => {
-            console.log(res);
-            return res.json();
-            if (res == 200) 
-                throw new Error(`[FATAL] Got response from API: err ${status}`);
-            else return res.json()
+    return fetch(`${configs.API.ROOT_ENDPOINT}/beers/randdom`, {
+        method: 'GET',
+        headers: configs.API.HEADERS,
+    })
+    .then((res) => {
+        if (res.status !== 200) {
+            throw new Error(`${configs.API.ERROR_CODE} ${res.status}`);
         }
-        // This part seems to not break?
-    )
+        return res.json()
+    })
+    .catch((err) => {
+        throw new Error(`${configs.API.ERROR} ${err}`);
+    })
 }

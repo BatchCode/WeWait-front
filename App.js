@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
-// import NavigationStack from './components/Navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ChooseProfile from './components/Auth/ChooseProfile';
