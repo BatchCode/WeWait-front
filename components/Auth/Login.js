@@ -1,31 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { getRandomBrewdog } from '../../services/LoginApi';
-
-// Change default opacity when user press it 
-TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
-
-function GetBeers() {
-    getRandomBrewdog();
-    // test.then(res => console.log(res))
-    // console.log(test);
-}
+import { Login } from '../../services/LoginApi';
+import { CustomBtn } from '../../utils/customBtn';
 
 export default function ChooseProfile({navigation, route}) {
 
     let type;
-    const [email, onChangeEmail] = React.useState('email@domain.com');
-    const [password, onChangePwd] = React.useState('Mot de passe');
+    const [email, onChangeEmail] = React.useState('albert.dupont@gmail.com');
+    const [pwd, onChangePwd] = React.useState('test');
     const [errMsg, setErrMsg] = React.useState();
 
+    if (route.params.isWewaiter) { type = "wewaiter" } else { type =  "user"; }
     const login = () => {
-        let result = getRandomBrewdog();
-        result.then(res => console.log(res))
-        setErrMsg("OLALALA");
+
+        Login(email, pwd, type)
+            .then(res => {
+                setErrMsg("HORRAY ! WE GOT A FUCKING JSON! \nBEARER " + res.token)
+                console.log(res)
+            })
+            .catch(res => setErrMsg(res.toString()))
     }
 
-    if (route.params.isWewaiter) { type = "wewaiter" } else { type =  "user"; }
 
     return (
         <View style={styles.container}>
@@ -34,7 +30,6 @@ export default function ChooseProfile({navigation, route}) {
             <Text style={styles.txtHint}>Veuillez vous authentifier pour continuer</Text>
             
             <Text>you are: {type}</Text>
-            {/* <GetBeers /> */}
 
             <TextInput
                 style={[styles.btn, styles.txtInput]}
@@ -45,7 +40,7 @@ export default function ChooseProfile({navigation, route}) {
             <TextInput
                 style={[styles.btn, styles.txtInput]}
                 onChangeText={text => onChangePwd(text)}
-                value={password}
+                value={pwd}
                 secureTextEntry
                 />
             <View style={styles.btnPadding} />
@@ -53,23 +48,11 @@ export default function ChooseProfile({navigation, route}) {
             <CustomBtn title="Connexion" backgroundColor="#21aa38" width="150px" onPress={login} />
             {errMsg ? <Text>{errMsg}</Text> : null}
             
-            <Text>{email}</Text>
-            <Text>{password}</Text>
+            {/* <Text>{email}</Text> */}
+            {/* <Text>{pwd}</Text> */}
         </View>
     )
 }
-
-const CustomBtn = ({ onPress, title, backgroundColor, width}) => (
-    <TouchableOpacity 
-        onPress={onPress}
-        style={[
-            styles.btn,
-            backgroundColor && { backgroundColor },
-            width && { width },
-        ]}>
-        <Text style={styles.btnText}>{title}</Text>
-    </TouchableOpacity>
-)
 
 const styles = new StyleSheet.create({
     container: {
@@ -93,26 +76,17 @@ const styles = new StyleSheet.create({
         height: 40,
         borderColor: 'black',
         backgroundColor: '#e6ebe7',
-        borderWidth: 1
+        borderWidth: 1,
+        elevation: 8,
+        borderRadius: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
     },
     txtInputPadding: {
         marginBottom: 10,
     },
     btnPadding: {
         marginBottom: 50,
-    },
-    btn: {
-        elevation: 8,
-        borderRadius: 15,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
-    },
-    btnText: {
-        fontSize: 12,
-        color: "#fff",
-        fontWeight: "bold",
-        alignSelf: "center",
-        textTransform: "uppercase",
     },
     logo: {
         marginTop: 20,
