@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { CustomBtn } from '../../utils/customBtn';
 
 export default function ChooseProfile( {navigation} ) {
@@ -10,13 +10,13 @@ export default function ChooseProfile( {navigation} ) {
             <Text style={styles.txt}>Bienvenue sur WeWait'</Text>
             <Text style={styles.txtHint}>Veuillez vous authentifier pour continuer</Text>
             
-            <CustomBtn title="Utilisateur" backgroundColor="#21aa38" width="150px" 
+            <CustomBtn title="Utilisateur" backgroundColor="#21aa38" width={150} 
                 onPress={() =>
                     navigation.navigate('Login', {isWewaiter: false})
                 }
             />
             <View style={styles.btnPadding} />
-            <CustomBtn title="WeWaiter's" backgroundColor="#2b66cc" width="150px" 
+            <CustomBtn title="WeWaiter's" backgroundColor="#2b66cc" width={150} 
                 onPress={() =>
                     navigation.navigate('Login', {isWewaiter: true})
                 }

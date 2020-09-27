@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 import { Login } from '../../services/LoginApi';
 import { CustomBtn } from '../../utils/customBtn';
 
@@ -13,13 +12,14 @@ export default function ChooseProfile({navigation, route}) {
 
     if (route.params.isWewaiter) { type = "wewaiter" } else { type =  "user"; }
     const login = () => {
-
+        // Reset (in case of previous Login attempt)
+        setErrMsg(null)
+        
         Login(email, pwd, type)
-            .then(res => {
-                setErrMsg("HORRAY ! WE GOT A FUCKING JSON! \nBEARER " + res.token)
-                console.log(res)
-            })
-            .catch(res => setErrMsg(res.toString()))
+            // .then(res => {
+                // setErrMsg("HORRAY ! WE GOT A FUCKING JSON! \nBEARER " + res.token)
+            // })
+            .catch(err => setErrMsg(err.toString()))
     }
 
 
@@ -32,20 +32,20 @@ export default function ChooseProfile({navigation, route}) {
             <Text>you are: {type}</Text>
 
             <TextInput
-                style={[styles.btn, styles.txtInput]}
+                style={styles.txtInput}
                 onChangeText={text => onChangeEmail(text)}
                 value={email}
                 />
             <View style={styles.txtInputPadding} />
             <TextInput
-                style={[styles.btn, styles.txtInput]}
+                style={styles.txtInput}
                 onChangeText={text => onChangePwd(text)}
                 value={pwd}
                 secureTextEntry
                 />
             <View style={styles.btnPadding} />
             
-            <CustomBtn title="Connexion" backgroundColor="#21aa38" width="150px" onPress={login} />
+            <CustomBtn title="Connexion" backgroundColor="#21aa38" width={150} onPress={login} />
             {errMsg ? <Text>{errMsg}</Text> : null}
             
             {/* <Text>{email}</Text> */}
@@ -81,6 +81,7 @@ const styles = new StyleSheet.create({
         borderRadius: 15,
         paddingVertical: 10,
         paddingHorizontal: 12,
+        width: 200
     },
     txtInputPadding: {
         marginBottom: 10,
