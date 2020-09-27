@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import ChooseProfile from './components/Auth/ChooseProfile';
 import Login from './components/Auth/Login';
+import Home from './components/Home';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function App() {
             <Stack.Navigator>
                 <Stack.Screen name="ChooseProfile" component={ChooseProfile} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
                 <Stack.Screen name="Login" component={Login} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
+                <Stack.Screen name="Home" component={Home} options={{ title: 'WeWait - Acceuil' }}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     )

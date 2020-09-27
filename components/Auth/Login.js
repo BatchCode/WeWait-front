@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 import { Login } from '../../services/LoginApi';
 import { CustomBtn } from '../../utils/customBtn';
+import Home from '../Home';
 
 export default function ChooseProfile({navigation, route}) {
 
@@ -45,7 +46,7 @@ export default function ChooseProfile({navigation, route}) {
                 />
             <View style={styles.btnPadding} />
             
-            <CustomBtn title="Connexion" backgroundColor="#21aa38" width={150} onPress={login} />
+            <CustomBtn title="Connexion" backgroundColor="#21aa38" width={150} onPress={Home} />
             {errMsg ? <Text>{errMsg}</Text> : null}
             
             {/* <Text>{email}</Text> */}
