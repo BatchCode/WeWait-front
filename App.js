@@ -13,6 +13,7 @@ export default function App() {
     return (
         <NavigationContainer style={styles}>
             <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home} options={{ title: 'WeWait - Accueil' }}></Stack.Screen>
                 <Stack.Screen name="ChooseProfile" component={ChooseProfile} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
                 <Stack.Screen name="Login" component={Login} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
                 <Stack.Screen name="Home" component={Home} options={{ title: 'WeWait - Acceuil' }}></Stack.Screen>

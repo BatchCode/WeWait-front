@@ -17,10 +17,10 @@ export default function ChooseProfile({navigation, route}) {
         setErrMsg(null)
         
         Login(email, pwd, type)
-            // .then(res => {
-                // setErrMsg("HORRAY ! WE GOT A FUCKING JSON! \nBEARER " + res.token)
-            // })
+            // .then(res => setErrMsg("HORRAY ! WE GOT A FUCKING JSON! \nBEARER " + res.token))
             .catch(err => setErrMsg(err.toString()))
+
+            navigation.navigate('Home');
     }
 
 
