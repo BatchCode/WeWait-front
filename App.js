@@ -1,36 +1,29 @@
+import React from 'react';
 import 'react-native-gesture-handler';
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ChooseUser from './components/Connexion/ChooseUser';
-import Connexion from './components/Connexion/Connexion';
-import Home from './components/Home/Home';
+import { StyleSheet } from 'react-native';
+import ChooseProfile from './components/Auth/ChooseProfile';
+import Login from './components/Auth/Login';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer style={styles.container}>
-       <NavRouter />
-    </NavigationContainer>
-  );
-}
-
-function NavRouter() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="ChooseUser" component={ChooseUser} />
-      <Stack.Screen name="Connexion" component={Connexion} />
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
-  )
+    return (
+        <NavigationContainer style={styles}>
+            <Stack.Navigator>
+                <Stack.Screen name="ChooseProfile" component={ChooseProfile} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
+                <Stack.Screen name="Login" component={Login} options={{ title: 'WeWait - Connexion' }}></Stack.Screen>
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
