@@ -9,18 +9,19 @@ export default function ChooseProfile({navigation, route}) {
     let type;
     const [email, onChangeEmail] = React.useState('albert.dupont@gmail.com');
     const [pwd, onChangePwd] = React.useState('test');
-    const [errMsg, setErrMsg] = React.useState();
+    const [errMsg, setErrMsg] = React.useState(null);
 
     if (route.params.isWewaiter) { type = "wewaiter" } else { type =  "user"; }
+    
     const login = () => {
         // Reset (in case of previous Login attempt)
         setErrMsg(null)
         
         Login(email, pwd, type)
-            // .then(res => setErrMsg("HORRAY ! WE GOT A FUCKING JSON! \nBEARER " + res.token))
+            // .then(res => setErrMsg("json: \nBEARER " + res.token))
             .catch(err => setErrMsg(err.toString()))
 
-            navigation.navigate('Home');
+            if (errMsg == null) navigation.navigate('Home');
     }
 
 
@@ -46,11 +47,9 @@ export default function ChooseProfile({navigation, route}) {
                 />
             <View style={styles.btnPadding} />
             
-            <CustomBtn title="Connexion" backgroundColor="#21aa38" width={150} onPress={Home} />
+            <CustomBtn title="Connexion" backgroundColor="#21aa38" width={150} onPress={login} />
             {errMsg ? <Text>{errMsg}</Text> : null}
             
-            {/* <Text>{email}</Text> */}
-            {/* <Text>{pwd}</Text> */}
         </View>
     )
 }
