@@ -1,8 +1,10 @@
 import CONFIGS from './Config'
 
-export function isLoggedIn() {
-    return localStorage.getItem('access_token') !== null;
-}
+// Local storage does not work on android
+
+// export function isLoggedIn() {
+//     return localStorage.getItem('access_token') !== null;
+// }
 
 export function Login(email, pwd, type) {
 
@@ -23,7 +25,7 @@ export function Login(email, pwd, type) {
         return res.json()
     })
     .then((res) => {
-        localStorage.setItem('access_token', "Bearer " + res.token)
-        return
+        // localStorage.setItem('access_token', "Bearer " + res.token)
+        // return
     })
 }

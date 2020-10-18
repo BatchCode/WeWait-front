@@ -1,6 +1,6 @@
 const CONFIGS = {
     API: {
-        URL: "https://localhost:44380/api",
+        URL: "https://wewaitapi.azurewebsites.net/api",
         // URL: "https://api.punkapi.com/v2",
         HEADERS: {
             "Content-Type": "application/json",

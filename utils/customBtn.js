@@ -12,7 +12,7 @@ export const CustomBtn = ({ onPress, title, backgroundColor, width}) => (
             backgroundColor && { backgroundColor },
             width && { width },
         ]}>
-        <Text style={styles.btnText}>{title}  </Text>
+        <Text style={styles.btnText}>  {title}  </Text>
     </TouchableOpacity>
 )
 
